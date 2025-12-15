@@ -24,25 +24,29 @@ export default function Login() {
   // };
 
   const submit = async (e) => {
-  e.preventDefault();
-  setError('');
+    e.preventDefault();
+    setError('');
 
-  try {
-    const res = await login({ username, password });
-    console.log('LOGIN RESPONSE:', res.data);
+    try {
+      const res = await login({ username, password });
 
-    if (res.data?.success) {
-      navigate('/projects');
+      console.log('LOGIN RESPONSE:', res.data);
+
+      if (res.data?.success) {
+        alert('Login success');
+        navigate('/projects');
+      }
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.error || 'Invalid username or password');
     }
-  } catch (err) {
-    console.error(err);
-    setError(err.response?.data?.error || 'Invalid username or password');
-  }
-};
+  };
+
+
 
   return (
     <div className="min-h-screen bg-[#1e1e1e] flex flex-col items-center justify-center">
-        <img src={logo} alt="Ubiquitous" className="w-20 h-20 mb-6" />
+      <img src={logo} alt="Ubiquitous" className="w-20 h-20 mb-6" />
 
       <div className="w-full max-w-sm bg-[#2a2a2a] rounded-xl p-8 shadow-lg">
 
@@ -83,14 +87,14 @@ export default function Login() {
             />
           </div>
 
-          
+
           {error && (
             <p className="text-red-400 text-sm text-center">
               {error}
             </p>
           )}
 
-          
+
           <button
             type="submit"
             className="w-full mt-2 py-2 rounded-lg bg-purple-400 hover:bg-purple-500 text-white transition"

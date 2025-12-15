@@ -15,8 +15,7 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem('token');   
+  const logout = () => { 
     setUser(null);
   };
 
