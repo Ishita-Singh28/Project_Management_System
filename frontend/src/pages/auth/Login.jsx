@@ -9,19 +9,36 @@ export default function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const submit = async (e) => {
-    e.preventDefault();
-    setError('');
+  // const submit = async (e) => {
+  //   e.preventDefault();
+  //   setError('');
 
-    try {
-      const res = await login({ username, password });
-      if (res.data?.success) {
-        navigate('/projects');
-      }
-    } catch (err) {
-      setError(err.response?.data?.error || 'Invalid username or password');
+  //   try {
+  //     const res = await login({ username, password });
+  //     if (res.data?.success) {
+  //       navigate('/projects');
+  //     }
+  //   } catch (err) {
+  //     setError(err.response?.data?.error || 'Invalid username or password');
+  //   }
+  // };
+
+  const submit = async (e) => {
+  e.preventDefault();
+  setError('');
+
+  try {
+    const res = await login({ username, password });
+    console.log('LOGIN RESPONSE:', res.data);
+
+    if (res.data?.success) {
+      navigate('/projects');
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setError(err.response?.data?.error || 'Invalid username or password');
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#1e1e1e] flex flex-col items-center justify-center">
