@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.REACT_APP_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true
 });
 
@@ -22,7 +22,7 @@ export const handleRequest = (projectId, data) => api.post(`/projects/${projectI
 
 //REPORTS
 export const connectReports = () =>
-  new EventSource(`${import.meta.env.REACT_APP_API_URLimport.meta.env.REACT_APP_API_URL.replace('/api', '')}/api/reports`, {
+  new EventSource(`${import.meta.env.VITE_API_URL.replace('/api', '')}/api/reports`, {
     withCredentials: true
   });
 
