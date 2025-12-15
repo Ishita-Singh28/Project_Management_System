@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: import.meta.env.REACT_APP_API_URL,
   withCredentials: true
 });
 
@@ -22,8 +22,9 @@ export const handleRequest = (projectId, data) => api.post(`/projects/${projectI
 
 //REPORTS
 export const connectReports = () =>
-  new EventSource('http://localhost:4000/api/reports', {
+  new EventSource(`${import.meta.env.REACT_APP_API_URLimport.meta.env.REACT_APP_API_URL.replace('/api', '')}/api/reports`, {
     withCredentials: true
   });
+
 
 export default api;
